@@ -32,8 +32,8 @@ const prisma = new PrismaClient();
 app.get("/", async (req: Request, res: Response): Promise<any> => {
   const response: ActionGetResponse = {
     icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-    title: "demo blink",
-    description: "demo blink tutorial",
+    title: "Fan War Blink",
+    description: "Rivalry between fandoms - Enter two options to create a fan war",
     label: "click me!",
     links: {
       actions: [
@@ -98,22 +98,13 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
     console.log("game not found");
     const gameNotFoundResponse: ActionGetResponse = {
       icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-      title: "demo blink",
+      title: "Fan War Blink",
       description: `Visit ${process.env.BASE_URL} to create a new game`,
       disabled: true,
       label: `No Game was found with id ${gameId}`,
       error: {
         message: `No Game was found with id ${gameId}`
-      },
-      // links: {
-      //   actions: [
-      //     {
-      //       href: '/',
-      //       label: "Create new Fan war",
-      //       type: "message"
-      //     }
-      //   ]
-      // }
+      }
     }
 
     return res.json(gameNotFoundResponse);
@@ -138,7 +129,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
 
   const gameExpiredResponse: ActionGetResponse = {
     icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-    title: "demo blink",
+    title: "Fan War Blink",
     description: "This War is Expired",
     label: "This War is Expired",
     disabled: true,
@@ -164,15 +155,15 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
 
   const response: ActionGetResponse = {
     icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-    title: "demo blink",
-    description: "demo blink tutorial",
-    label: "Vote for 0.02 SOL",
+    title: "Fan War Blink",
+    description: "Rivalry between fandoms - Vote your favourite",
+    label: "Vote for 0.2 SOL",
     links: {
       actions: [
         {
           type: "post",
           href: `/vote/${gameId}`,
-          label: "Vote for 0.02 SOL",
+          label: "Vote for 0.2 SOL",
         }
       ]
     }
@@ -216,19 +207,19 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
 
     const userExistResponse: ActionPostResponse = {
       type: "post",
-      message: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
+      message: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
       links: {
         next: {
           type: "inline",
           action: {
             icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-            description: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
+            description: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
             error: {
               message: "You have already voted"
             },
             disabled: true,
             label: "click me!",
-            title: "blink on solana by swappy",
+            title: "Fan War Blink",
             type: "action",
             links: {
               actions: [
@@ -288,15 +279,15 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
       const response: ActionPostResponse = {
         type: "transaction",
         transaction: serialTx,
-        message: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
+        message: `Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
         links: {
           next: {
             type: "inline",
             action: {
               icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-              description: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
-              label: "Vote for 0.02 SOL",
-              title: "blink on solana by swappy",
+              description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId} and vote`,
+              label: "Vote for 0.2 SOL",
+              title: "Fan War Blink",
               type: "action",
               links: {
                 actions: [
@@ -410,16 +401,17 @@ app.post(
 
     const response: ActionPostResponse = {
       type: "post",
-      message: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
+      message: `Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
       links: {
         next: {
           type: "inline",
           action: {
             icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-            description: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
+            description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
             label: "click me!",
-            title: "blink on solana by swappy",
+            title: "Fan War Blink",
             type: "action",
+            disabled: true,
             links: {
               actions: [
                 {
@@ -477,16 +469,16 @@ app.post(
           type: "inline",
           action: {
             icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-            description: "a demo blink",
+            description: "Rivalry between fandoms - Vote your favourite",
             label: "click me!",
-            title: "blink on solana by swappy",
+            title: "Fan War Blink",
             type: "action",
             links: {
               actions: [
                 {
                   type: "post",
                   href: `/vote/${gameId}`,
-                  label: "Vote for 0.02 SOL",
+                  label: "Vote for 0.2 SOL",
                 }
               ],
             },
@@ -534,9 +526,9 @@ app.post("/create", async (req: Request, res: Response): Promise<any> => {
         type: "inline",
         action: {
           icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-          description: "a demo blink",
+          description: "Rivalry between fandoms - Choose duration",
           label: "click me!",
-          title: "blink on solana by swappy",
+          title: "Fan War Blink",
           type: "action",
           links: {
             actions: [
