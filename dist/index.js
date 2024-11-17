@@ -43,7 +43,7 @@ const dotenv = __importStar(require("dotenv"));
 const generate_unique_id_1 = __importDefault(require("generate-unique-id"));
 const client_1 = require("@prisma/client");
 dotenv.config();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());

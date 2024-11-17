@@ -20,7 +20,7 @@ import { PrismaClient } from "@prisma/client";
 
 dotenv.config();
 
-const PORT: number = 8080;
+const PORT = process.env.PORT || 8080;
 
 const app: Express = express();
 
