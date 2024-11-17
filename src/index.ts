@@ -297,7 +297,6 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
               description: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
               label: "Vote for 0.02 SOL",
               title: "blink on solana by swappy",
-              disabled: true,
               type: "action",
               links: {
                 actions: [

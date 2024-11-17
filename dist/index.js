@@ -283,7 +283,6 @@ app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, functi
                         description: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
                         label: "Vote for 0.02 SOL",
                         title: "blink on solana by swappy",
-                        disabled: true,
                         type: "action",
                         links: {
                             actions: [
