@@ -113,7 +113,7 @@ app.get("/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const gameNotFoundResponse = {
             icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
             title: "demo blink",
-            description: `Visit http://localhost:8080/ to create a new game`,
+            description: `Visit ${process.env.BASE_URL} to create a new game`,
             disabled: true,
             label: `No Game was found with id ${gameId}`,
             error: {
@@ -210,13 +210,13 @@ app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, functi
     const votedOpt2Percentage = (votedOpt2Count / (votedOpt1Count + votedOpt2Count) * 100).toFixed(2);
     const userExistResponse = {
         type: "post",
-        message: `Already voted! Share this link to invite friends - http://localhost:8080/${gameId}`,
+        message: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
         links: {
             next: {
                 type: "inline",
                 action: {
                     icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-                    description: `Already voted! Share this link to invite friends - http://localhost:8080/${gameId}`,
+                    description: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
                     error: {
                         message: "You have already voted"
                     },
@@ -274,13 +274,13 @@ app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, functi
         const response = {
             type: "transaction",
             transaction: serialTx,
-            message: `Share this link to invite friends - http://localhost:8080/${gameId}`,
+            message: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
             links: {
                 next: {
                     type: "inline",
                     action: {
                         icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-                        description: `Share this link to invite friends - http://localhost:8080/${gameId}`,
+                        description: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
                         label: "Vote for 0.02 SOL",
                         title: "blink on solana by swappy",
                         disabled: true,
@@ -383,13 +383,13 @@ app.post("/choose/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, func
     console.log("update vote db response: ", dbResponse);
     const response = {
         type: "post",
-        message: `Share this link to invite friends - http://localhost:8080/${gameId}`,
+        message: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
         links: {
             next: {
                 type: "inline",
                 action: {
                     icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-                    description: `Share this link to invite friends - http://localhost:8080/${gameId}`,
+                    description: `Share this link to invite friends - ${process.env.BASE_URL}/${gameId}`,
                     label: "click me!",
                     title: "blink on solana by swappy",
                     type: "action",
