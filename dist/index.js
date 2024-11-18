@@ -111,6 +111,11 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 app.get("/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.set(actions_1.ACTIONS_CORS_HEADERS);
+    res.set({
+        "X-Action-Version": "2.1.3",
+        "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
+    res.set(actions_1.ACTIONS_CORS_HEADERS);
     const gameId = req.params.gameid;
     const game = yield prisma.game.findFirst({
         where: {
@@ -187,6 +192,10 @@ app.get("/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 }));
 app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.set(actions_1.ACTIONS_CORS_HEADERS);
+    res.set({
+        "X-Action-Version": "2.1.3",
+        "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
     const gameId = req.params.gameid;
     const game = yield prisma.game.findFirst({
         where: {
@@ -317,6 +326,11 @@ app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 }));
 app.post("/choose/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.set(actions_1.ACTIONS_CORS_HEADERS);
+    res.set({
+        "X-Action-Version": "2.1.3",
+        "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
     const choosen_hero = req.body.data.choosen_hero;
     console.log(choosen_hero);
     const postRequest = yield req.body;
@@ -411,10 +425,14 @@ app.post("/choose/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, func
             },
         },
     };
-    res.set(actions_1.ACTIONS_CORS_HEADERS);
     return res.json(response);
 }));
 app.post("/set-duration/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.set(actions_1.ACTIONS_CORS_HEADERS);
+    res.set({
+        "X-Action-Version": "2.1.3",
+        "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
     const duration = req.body.data.choosen_duration;
     const postRequest = yield req.body;
     const userPubkey = postRequest.account;
@@ -458,10 +476,14 @@ app.post("/set-duration/:gameid", (req, res) => __awaiter(void 0, void 0, void 0
         },
         message: `You choose a duration of ${duration}`,
     };
-    res.set(actions_1.ACTIONS_CORS_HEADERS);
     return res.json(response);
 }));
 app.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.set(actions_1.ACTIONS_CORS_HEADERS);
+    res.set({
+        "X-Action-Version": "2.1.3",
+        "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
     const option1 = req.body.data.option1;
     const option2 = req.body.data.option2;
     const postRequest = yield req.body;
@@ -525,7 +547,6 @@ app.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         },
         message: `Share this link to invite your friends - ${req.url}/${gameId}`,
     };
-    res.set(actions_1.ACTIONS_CORS_HEADERS);
     return res.json(response);
 }));
 app.options("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
