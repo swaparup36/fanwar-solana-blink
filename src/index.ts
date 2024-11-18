@@ -24,7 +24,11 @@ const PORT = process.env.PORT || 8080;
 
 const app: Express = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept-Encoding'],
+  methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
+}));
 app.use(express.json());
 app.use('/static', express.static('public'));
 
@@ -81,6 +85,10 @@ app.get("/", async (req: Request, res: Response): Promise<any> => {
   };
 
   res.set(ACTIONS_CORS_HEADERS);
+  res.set({
+    "X-Action-Version": "2.1.3",
+    "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+  });
   return res.json(response);
 });
 
