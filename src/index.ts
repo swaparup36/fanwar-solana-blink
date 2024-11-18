@@ -32,7 +32,7 @@ const prisma = new PrismaClient();
 
 app.get("/", async (req: Request, res: Response): Promise<any> => {
   const response: ActionGetResponse = {
-    icon: `${process.env.BASE_URL}static/logo.jpg`,
+    icon: `http://idox9ft.sufydely.com/logo.jpg`,
     title: "Fan War Blink",
     description: "Rivalry between fandoms - Enter two options to create a fan war",
     label: "click me!",
@@ -98,7 +98,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   if(!game) {
     console.log("game not found");
     const gameNotFoundResponse: ActionGetResponse = {
-      icon: `${process.env.BASE_URL}static/logo.jpg`,
+      icon: `http://idox9ft.sufydely.com/logo.jpg`,
       title: "Fan War Blink",
       description: `Visit ${process.env.BASE_URL} to create a new game`,
       disabled: true,
@@ -129,7 +129,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   const votedOpt2Percentage = (votedOpt2Count / (votedOpt1Count + votedOpt2Count) * 100).toFixed(2);
 
   const gameExpiredResponse: ActionGetResponse = {
-    icon: `${process.env.BASE_URL}static/logo.jpg`,
+    icon: `http://idox9ft.sufydely.com/logo.jpg`,
     title: "Fan War Blink",
     description: "This War is Expired",
     label: "This War is Expired",
@@ -155,7 +155,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   }
 
   const response: ActionGetResponse = {
-    icon: `${process.env.BASE_URL}static/logo.jpg`,
+    icon: `http://idox9ft.sufydely.com/logo.jpg`,
     title: "Fan War Blink",
     description: "Rivalry between fandoms - Vote your favourite",
     label: "Vote for 0.2 SOL",
@@ -213,7 +213,7 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
         next: {
           type: "inline",
           action: {
-            icon: `${process.env.BASE_URL}static/logo.jpg`,
+            icon: `http://idox9ft.sufydely.com/logo.jpg`,
             description: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
             error: {
               message: "You have already voted"
@@ -285,7 +285,7 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
           next: {
             type: "inline",
             action: {
-              icon: `${process.env.BASE_URL}static/logo.jpg`,
+              icon: `http://idox9ft.sufydely.com/logo.jpg`,
               description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId} and vote`,
               label: "Vote for 0.2 SOL",
               title: "Fan War Blink",
@@ -469,7 +469,7 @@ app.post(
         next: {
           type: "inline",
           action: {
-            icon: `${process.env.BASE_URL}static/logo.jpg`,
+            icon: `http://idox9ft.sufydely.com/logo.jpg`,
             description: "Rivalry between fandoms - Vote your favourite",
             label: "click me!",
             title: "Fan War Blink",
@@ -526,7 +526,7 @@ app.post("/create", async (req: Request, res: Response): Promise<any> => {
       next: {
         type: "inline",
         action: {
-          icon: `${process.env.BASE_URL}static/logo.jpg`,
+          icon: `http://idox9ft.sufydely.com/logo.jpg`,
           description: "Rivalry between fandoms - Choose duration",
           label: "click me!",
           title: "Fan War Blink",
