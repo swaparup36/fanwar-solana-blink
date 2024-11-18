@@ -47,10 +47,11 @@ const PORT = process.env.PORT || 8080;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use('/static', express_1.default.static('public'));
 const prisma = new client_1.PrismaClient();
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const response = {
-        icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+        icon: `${process.env.BASE_URL}static/logo.jpg`,
         title: "Fan War Blink",
         description: "Rivalry between fandoms - Enter two options to create a fan war",
         label: "click me!",
@@ -111,7 +112,7 @@ app.get("/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     if (!game) {
         console.log("game not found");
         const gameNotFoundResponse = {
-            icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+            icon: `${process.env.BASE_URL}static/logo.jpg`,
             title: "Fan War Blink",
             description: `Visit ${process.env.BASE_URL} to create a new game`,
             disabled: true,
@@ -136,7 +137,7 @@ app.get("/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const votedOpt1Percentage = (votedOpt1Count / (votedOpt1Count + votedOpt2Count) * 100).toFixed(2);
     const votedOpt2Percentage = (votedOpt2Count / (votedOpt1Count + votedOpt2Count) * 100).toFixed(2);
     const gameExpiredResponse = {
-        icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+        icon: `${process.env.BASE_URL}static/logo.jpg`,
         title: "Fan War Blink",
         description: "This War is Expired",
         label: "This War is Expired",
@@ -160,7 +161,7 @@ app.get("/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         return res.json(gameExpiredResponse);
     }
     const response = {
-        icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+        icon: `${process.env.BASE_URL}static/logo.jpg`,
         title: "Fan War Blink",
         description: "Rivalry between fandoms - Vote your favourite",
         label: "Vote for 0.2 SOL",
@@ -206,7 +207,7 @@ app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, functi
             next: {
                 type: "inline",
                 action: {
-                    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+                    icon: `${process.env.BASE_URL}static/logo.jpg`,
                     description: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
                     error: {
                         message: "You have already voted"
@@ -270,7 +271,7 @@ app.post("/vote/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, functi
                 next: {
                     type: "inline",
                     action: {
-                        icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+                        icon: `${process.env.BASE_URL}static/logo.jpg`,
                         description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId} and vote`,
                         label: "Vote for 0.2 SOL",
                         title: "Fan War Blink",
@@ -378,7 +379,7 @@ app.post("/choose/:gameid", (req, res) => __awaiter(void 0, void 0, void 0, func
             next: {
                 type: "inline",
                 action: {
-                    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+                    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/logo.png",
                     description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
                     label: "click me!",
                     title: "Fan War Blink",
@@ -430,7 +431,7 @@ app.post("/set-duration/:gameid", (req, res) => __awaiter(void 0, void 0, void 0
             next: {
                 type: "inline",
                 action: {
-                    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+                    icon: `${process.env.BASE_URL}static/logo.jpg`,
                     description: "Rivalry between fandoms - Vote your favourite",
                     label: "click me!",
                     title: "Fan War Blink",
@@ -477,7 +478,7 @@ app.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             next: {
                 type: "inline",
                 action: {
-                    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+                    icon: `${process.env.BASE_URL}static/logo.jpg`,
                     description: "Rivalry between fandoms - Choose duration",
                     label: "click me!",
                     title: "Fan War Blink",

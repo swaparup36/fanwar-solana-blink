@@ -26,12 +26,13 @@ const app: Express = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/static', express.static('public'));
 
 const prisma = new PrismaClient();
 
 app.get("/", async (req: Request, res: Response): Promise<any> => {
   const response: ActionGetResponse = {
-    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+    icon: `${process.env.BASE_URL}static/logo.jpg`,
     title: "Fan War Blink",
     description: "Rivalry between fandoms - Enter two options to create a fan war",
     label: "click me!",
@@ -97,7 +98,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   if(!game) {
     console.log("game not found");
     const gameNotFoundResponse: ActionGetResponse = {
-      icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+      icon: `${process.env.BASE_URL}static/logo.jpg`,
       title: "Fan War Blink",
       description: `Visit ${process.env.BASE_URL} to create a new game`,
       disabled: true,
@@ -128,7 +129,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   const votedOpt2Percentage = (votedOpt2Count / (votedOpt1Count + votedOpt2Count) * 100).toFixed(2);
 
   const gameExpiredResponse: ActionGetResponse = {
-    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+    icon: `${process.env.BASE_URL}static/logo.jpg`,
     title: "Fan War Blink",
     description: "This War is Expired",
     label: "This War is Expired",
@@ -154,7 +155,7 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   }
 
   const response: ActionGetResponse = {
-    icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+    icon: `${process.env.BASE_URL}static/logo.jpg`,
     title: "Fan War Blink",
     description: "Rivalry between fandoms - Vote your favourite",
     label: "Vote for 0.2 SOL",
@@ -212,7 +213,7 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
         next: {
           type: "inline",
           action: {
-            icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+            icon: `${process.env.BASE_URL}static/logo.jpg`,
             description: `Already voted! Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
             error: {
               message: "You have already voted"
@@ -284,7 +285,7 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
           next: {
             type: "inline",
             action: {
-              icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+              icon: `${process.env.BASE_URL}static/logo.jpg`,
               description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId} and vote`,
               label: "Vote for 0.2 SOL",
               title: "Fan War Blink",
@@ -406,7 +407,7 @@ app.post(
         next: {
           type: "inline",
           action: {
-            icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+            icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/logo.png",
             description: `Share this link to invite friends - ${process.env.BASE_URL}${gameId}`,
             label: "click me!",
             title: "Fan War Blink",
@@ -468,7 +469,7 @@ app.post(
         next: {
           type: "inline",
           action: {
-            icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+            icon: `${process.env.BASE_URL}static/logo.jpg`,
             description: "Rivalry between fandoms - Vote your favourite",
             label: "click me!",
             title: "Fan War Blink",
@@ -525,7 +526,7 @@ app.post("/create", async (req: Request, res: Response): Promise<any> => {
       next: {
         type: "inline",
         action: {
-          icon: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+          icon: `${process.env.BASE_URL}static/logo.jpg`,
           description: "Rivalry between fandoms - Choose duration",
           label: "click me!",
           title: "Fan War Blink",
