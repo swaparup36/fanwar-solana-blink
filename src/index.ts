@@ -94,6 +94,11 @@ app.get("/", async (req: Request, res: Response): Promise<any> => {
 
 app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
   res.set(ACTIONS_CORS_HEADERS);
+  res.set({
+    "X-Action-Version": "2.1.3",
+    "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+  });
+  res.set(ACTIONS_CORS_HEADERS);
 
   const gameId = req.params.gameid;
 
@@ -183,6 +188,11 @@ app.get("/:gameid", async (req: Request, res: Response): Promise<any> => {
 
 app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
   res.set(ACTIONS_CORS_HEADERS);
+  res.set({
+    "X-Action-Version": "2.1.3",
+    "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+  });
+
   const gameId = req.params.gameid;
 
   const game = await prisma.game.findFirst({
@@ -334,6 +344,12 @@ app.post("/vote/:gameid", async (req: Request, res: Response): Promise<any> => {
 app.post(
   "/choose/:gameid",
   async (req: Request, res: Response): Promise<any> => {
+    res.set(ACTIONS_CORS_HEADERS);
+    res.set({
+      "X-Action-Version": "2.1.3",
+      "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
+
     const choosen_hero = req.body.data.choosen_hero;
     console.log(choosen_hero);
     const postRequest: ActionPostRequest = await req.body;
@@ -440,7 +456,6 @@ app.post(
       },
     };
 
-    res.set(ACTIONS_CORS_HEADERS);
     return res.json(response);
   }
 );
@@ -448,6 +463,11 @@ app.post(
 app.post(
   "/set-duration/:gameid",
   async (req: Request, res: Response): Promise<any> => {
+    res.set(ACTIONS_CORS_HEADERS);
+    res.set({
+      "X-Action-Version": "2.1.3",
+      "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+    });
     const duration = req.body.data.choosen_duration;
 
     const postRequest: ActionPostRequest = await req.body;
@@ -497,12 +517,17 @@ app.post(
       message: `You choose a duration of ${duration}`,
     };
 
-    res.set(ACTIONS_CORS_HEADERS);
     return res.json(response);
   }
 );
 
 app.post("/create", async (req: Request, res: Response): Promise<any> => {
+  res.set(ACTIONS_CORS_HEADERS);
+  res.set({
+    "X-Action-Version": "2.1.3",
+    "X-Blockchain-Ids": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
+  });
+
   const option1 = req.body.data.option1;
   const option2 = req.body.data.option2;
   const postRequest: ActionPostRequest = await req.body;
@@ -574,7 +599,6 @@ app.post("/create", async (req: Request, res: Response): Promise<any> => {
     message: `Share this link to invite your friends - ${req.url}/${gameId}`,
   };
 
-  res.set(ACTIONS_CORS_HEADERS);
   return res.json(response);
 });
 
